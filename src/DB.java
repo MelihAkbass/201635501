@@ -22,7 +22,7 @@ public class DB {
     
     private String username = "root";
     private String password = "";
-    private String databaseName = "users";
+    private String databaseName = "201635501";
     private String host = "localhost";
     private int port = 3306;
     
@@ -78,38 +78,10 @@ public class DB {
     /*
     * Return database item by ID
     */
-    public String[] getItemsByID() {
-        int i = 0;
-        String[] items = new String[64];        
-        String rqst = "SELECT ID FROM products"; //get all items on product table by id  
-        try {
-            
-            statement = connection.createStatement();
-            
-            ResultSet result = statement.executeQuery(rqst);
-            
-            while(result.next()) {
-                items[i] = result.getString("ID");
-                i++;
-            }            
-            i=0;
-            
-            //Remove null items
-            items = Arrays.stream(items)
-                     .filter(s -> (s != null && s.length() > 0))
-                     .toArray(String[]::new);    
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return items;
-    }
     
     public ResultSet getItemByUserName(String username) {
         
-        String rqst = "SELECT * FROM accounts WHERE Username = '"+ username +"'"; //get items product table by id  
+        String rqst = "SELECT * FROM accounts WHERE Username = '"+ username +"'"; //get items by id  
         try {
             
             statement = connection.createStatement();
